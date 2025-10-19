@@ -1,6 +1,6 @@
 # Proyecto-de-IA-sobre-globos-de-texto-
 Proyecto de Globos de Texto (Versión de Prueba)
-
+https://github.com/anonime5826-creator/Proyecto-de-IA-sobre-globos-de-texto-.git
 Este es un proyecto experimental que muestra un sistema básico de globos de texto para la web al igual que otros aunque esté fue más hecho para uso global
 Actualmente incluye las funciones principales con lo que solo conlleva los códigos básicos de una web.
 
