@@ -8,6 +8,7 @@ Mi objetivo a futuro es desarrollar un formato de archivo propio algo así como 
 por lo que no prometo nada.
 
 Estado del proyecto
+
 Este proyecto  no está finalizado y aún es necesario mejorar varias partes del código y subdividirlas. Fue creado con ayuda de una IA, por lo que pueden existir limitaciones o fragmentos que necesiten optimización o reescritura.
 
 Aun así, el prototipo funciona correctamente y representa el concepto principal a abordar.
