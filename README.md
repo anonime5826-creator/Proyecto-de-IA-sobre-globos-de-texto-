@@ -15,4 +15,5 @@ Aun así, el prototipo funciona correctamente y representa el concepto principal
 
 
 Uso
-Podés descargar el proyecto y abrir el archivo `index.html` en tu navegador.
+
+Podés descargar el proyecto y usarlo libremente 
