@@ -1,0 +1,282 @@
+:root {
+  --bg: #0f1724;
+  --card: #0b1220;
+  --muted: #9aa4b2;
+  --glass: rgba(255, 255, 255, 0.03);
+  font-family: Inter, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Layout general */
+body {
+  margin: 0;
+  padding: 18px;
+  display: flex;
+  gap: 18px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #071025 0%, #061528 100%);
+  color: #e6eef6;
+}
+
+/* Panel lateral */
+.panel {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  width: 320px;
+  user-select: none;
+}
+.panel * {
+  user-select: none;
+}
+
+/* Form y botones */
+h2 {
+  margin: 4px 0 12px;
+  font-size: 16px;
+}
+label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+input,
+select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  color: inherit;
+}
+.btn {
+  width: 100%;
+  margin-top: 12px;
+  background: #2b6cb0;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+/* Lista de personajes */
+.chars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+.char-card {
+  background: var(--glass);
+  border-radius: 8px;
+  padding: 8px;
+  transition: all .2s ease;
+  user-select: auto;
+}
+.char-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.char-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #0a1220;
+}
+.char-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+}
+.emotions-panel {
+  display: none;
+  margin-top: 8px;
+  gap: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 4px;
+}
+.char-card.open .emotions-panel {
+  display: flex;
+}
+.emotion-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.emotion-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.emotion-avatar.selected {
+  border-color: #fff;
+}
+.change-emotion {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Hoja de libro */
+.story-area {
+  width: 210mm;
+  height: 297mm;
+  margin: 20px auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: #e6eef6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 20mm;
+  overflow-y: auto;
+  border-radius: 4px;
+  position: relative;
+}
+.story-area.theme-blue { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color: #e6eef6; }
+.story-area.theme-white { background: #fff; color: #000; }
+.story-area.theme-dark { background: #000; color: #fff; }
+
+/* Editor de texto */
+#editor {
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ===== Globos de texto corregidos ===== */
+.balloon {
+  background: var(--glass);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 20px 0;
+  max-width: 70%;
+  position: relative;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+/* Nombre arriba */
+.balloon .name {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  margin-left: 60px; /* deja espacio sobre el avatar */
+  color: inherit;
+}
+
+/* Avatar a la izquierda */
+.balloon .avatar-wrap {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin: 0 12px 10px 0; /* margen inferior crea el hueco debajo del avatar */
+  shape-outside: circle(50%);
+  -webkit-shape-outside: circle(50%);
+  shape-margin: 8px;
+}
+
+.balloon .avatar-wrap .avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Texto fluido */
+.balloon .dialogue {
+  overflow-wrap: break-word;
+  text-align: left;
+}
+
+/* Piquito del globo */
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 28px;
+  border-width: 8px 8px 0 8px;
+  border-style: solid;
+  border-color: var(--glass) transparent transparent transparent;
+}
+.balloon.left {
+  margin-right: auto;
+}
+
+.balloon.right {
+  margin-left: auto;
+}
+
+/* Si quieres espejar también el triángulo: */
+.balloon.left::after { left: 28px; transform: none; }
+.balloon.right::after { right: 28px; transform: scaleX(-1); }
+
+/* Manejador de borrado */
+.del-handle {
+  display: none;
+  margin-left: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.story-area.delete-mode .balloon .del-handle {
+  display: inline;
+}
+/* Avatar flotante normal */
+.balloon .avatar-wrap {
+  float: left;
+  margin: 0 12px 10px 0;
+  shape-outside: circle(50%);
+  -webkit-shape-outside: circle(50%);
+  shape-margin: 8px;
+}
+
+/* Avatar flotante en globos alineados a la derecha */
+.balloon.right .avatar-wrap {
+  float: right;
+  margin: 0 0 10px 12px;
+  shape-outside: circle(50%);
+  -webkit-shape-outside: circle(50%);
+  shape-margin: 8px;
+}
+
+/* Nombre en globos normales */
+.balloon .name {
+  margin-bottom: 6px;
+  margin-left: 60px;
+  text-align: left;
+}
+
+/* Nombre en globos alineados a la derecha */
+.balloon.right .name {
+  margin-bottom: 6px;
+  margin-left: 0;
+  margin-right: 60px;
+  text-align: right;
+}
+/* Por defecto no se invierte */
+.balloon .avatar {
+  transform: none;
+}
+
+/* Sólo para globos alineados a la derecha: espejo horizontal */
+.balloon.right .avatar {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
